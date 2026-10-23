@@ -1,9 +1,10 @@
 import type { ReactNode } from "react"
 
 /**
- * Variações de copy das páginas de captura de teste (/v1, /v2, /v3).
- * Mesma página atual (versão AR/UY/CL); muda só o topo: título, subtítulo e botão.
- * A versão internacional (resto do mundo) continua com o título "safe" em todas.
+ * Variações da página Jubilados — versão AR/UY/CL (com promessa de dinheiro). Teste de headline do Emi (23/10):
+ * A = /v1, B = /v2, C = /v3, D = /v4. Muda só o texto da promessa e o que vai em destaque; tamanho,
+ * tipografia e estilos do hero são os mesmos. Subpromessa e botão iguais nas quatro (só a headline é testada).
+ * Verde = o mesmo do fundo do botão CTA (#20d681). A versão internacional (resto do mundo) usa lib/variantes-intl.tsx.
  */
 export type VarianteCaptura = {
   landing: string
@@ -12,67 +13,78 @@ export type VarianteCaptura = {
   botao: string
 }
 
-const verde = "font-bold text-[#00D084]"
+const branco = "font-bold text-white"
+const verde = "font-bold text-[#20d681]"
 
-export const VARIANTES: Record<"v1" | "v2" | "v3", VarianteCaptura> = {
-  // Controle: igual à página principal de hoje
+const SUBPROMESA = (
+  <>
+    <strong className={branco}>Sin experiencia previa</strong>{", "}<strong className={branco}>adaptado a tu rutina</strong>{" y "}
+    <strong className={branco}>con un capital bajo para empezar</strong>{"."}
+  </>
+)
+const BOTAO = "QUIERO REGISTRARME GRATIS"
+
+export const VARIANTES: Record<"v1" | "v2" | "v3" | "v4", VarianteCaptura> = {
+  // A
   v1: {
     landing: "/v1",
     titulo: (
       <>
         {"Aprendé a invertir en los "}
-        <span className="font-bold text-white">mercados financieros</span>
-        {" para generar "}
-        <span className="font-bold text-white">ingresos extra</span>
-        {" de "}
-        <span className={verde}>500 a 2.000 dólares al mes</span>
+        <span className={branco}>mercados financieros</span>
+        {" y empezá a generar "}
+        <span className={verde}>500 a 2.000 dólares extra por mes</span>
+        {" para tu jubilación"}
       </>
     ),
-    subtitulo: (
-      <>
-        <strong>Sin experiencia previa</strong>, <strong>sin dejar tu trabajo</strong> y <strong>adaptado a tu rutina</strong>.
-      </>
-    ),
-    botao: "QUIERO REGISTRARME GRATIS",
+    subtitulo: SUBPROMESA,
+    botao: BOTAO,
   },
-  // Foco no formato: 4 clases, desde cero
+  // B
   v2: {
     landing: "/v2",
     titulo: (
       <>
-        {"En "}
-        <span className={verde}>4 clases gratuitas</span>
-        {" aprendé a invertir "}
-        <span className="font-bold text-white">desde cero</span>
-        {" y empezá a generar "}
-        <span className="font-bold text-white">500 a 2.000 dólares extra al mes</span>
+        {"Aprendé a invertir en los "}
+        <span className={branco}>mercados financieros</span>
+        {", la habilidad con la que otros suman "}
+        <span className={verde}>500 a 2.000 dólares al mes</span>
+        {" a su jubilación"}
       </>
     ),
-    subtitulo: (
-      <>
-        Un paso a paso <strong>en vivo y online</strong>, pensado para quien <strong>nunca invirtió</strong> y tiene poco tiempo.
-      </>
-    ),
-    botao: "QUIERO MI LUGAR GRATIS",
+    subtitulo: SUBPROMESA,
+    botao: BOTAO,
   },
-  // Pregunta directa al dolor
+  // C
   v3: {
     landing: "/v3",
     titulo: (
       <>
-        {"¿Querés un "}
-        <span className={verde}>ingreso extra de 500 a 2.000 dólares</span>
-        {" al mes "}
-        <span className="font-bold text-white">sin dejar tu trabajo</span>
-        {"?"}
+        {"Tu jubilación va a ser "}
+        <span className={branco}>la mitad de lo que ganás hoy</span>
+        {". Aprendé a invertir en los "}
+        <span className={branco}>mercados financieros</span>
+        {" y generá "}
+        <span className={verde}>500 a 2.000 extra por mes</span>
       </>
     ),
-    subtitulo: (
+    subtitulo: SUBPROMESA,
+    botao: BOTAO,
+  },
+  // D
+  v4: {
+    landing: "/v4",
+    titulo: (
       <>
-        Aprendé a invertir en los mercados financieros en un <strong>entrenamiento gratuito</strong>, aunque{" "}
-        <strong>nunca hayas invertido</strong>.
+        {"Aprendé a invertir en los "}
+        <span className={branco}>mercados financieros</span>
+        {" y llegá a tu jubilación "}
+        <span className={branco}>con tus propios ingresos</span>
+        {", "}
+        <span className={verde}>de 500 a 2.000 dólares por mes</span>
       </>
     ),
-    botao: "SÍ, QUIERO PARTICIPAR GRATIS",
+    subtitulo: SUBPROMESA,
+    botao: BOTAO,
   },
 }

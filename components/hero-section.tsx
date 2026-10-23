@@ -12,6 +12,9 @@ import { getDateAndTimeGMT3 } from "@/lib/date-utils"
 import { GeoLogoMarquee } from "@/components/geo-logo-marquee"
 import { graciasDaPessoa, modoTeste, LANCAMENTO_TESTE } from "@/lib/lancamento"
 import type { VarianteCaptura } from "@/lib/variantes"
+import { VARIANTES_INTL } from "@/lib/variantes-intl"
+import { variacaoAtiva } from "@/lib/variacao-ativa"
+import type { ReactNode } from "react"
 
 function getThankYouPath(_phone: string): string {
   return "/gracias-video4"
@@ -62,7 +65,7 @@ function formatPhoneNumber(phone: string, countryCode: string): string {
   return telefoneComPais(phone, { nome: pais?.name ?? "", ddi: pais?.dial ?? "" })
 }
 
-export function HeroSection({ safeMode = false, countryLanding = false, variante }: { safeMode?: boolean; countryLanding?: boolean; variante?: VarianteCaptura }) {
+export function HeroSection({ safeMode = false, countryLanding = false, variante: varianteFixa, variantes }: { safeMode?: boolean; countryLanding?: boolean; variante?: VarianteCaptura; variantes?: Record<string, VarianteCaptura> }) {
   const [isVisible, setIsVisible] = useState(false)
   const [phone, setPhone] = useState("")
   const [phoneError, setPhoneError] = useState("")
@@ -141,7 +144,8 @@ export function HeroSection({ safeMode = false, countryLanding = false, variante
     // Formatear telefono (eliminar 0 inicial para UY, solo numeros)
     const cleanPhone = formatPhoneNumber(phone, selectedCountry.code)
 
-    // Páginas de teste (/v1–/v3): gracias sorteada (A/B/C) e landing pelo endereço
+    // Páginas de teste (/v1–/v3 ou a variação sorteada no link único): gracias sorteada e landing da variação
+    const variante = varianteFixa ?? (variantes ? variantes[variacaoAtiva() ?? ""] : undefined)
     const teste = !!variante && modoTeste()
     const assignedThankYouPage = variante ? graciasDaPessoa() : getThankYouPath(cleanPhone)
     const landingOrigin = variante?.landing ?? (window.location.pathname || "/")
@@ -245,6 +249,19 @@ export function HeroSection({ safeMode = false, countryLanding = false, variante
     }
   }
 
+  // Testes (/v1, /v2…): AR/UY/CL usa lib/variantes.tsx (com promessa); o resto do mundo, lib/variantes-intl.tsx (sem promessa)
+  const copia = varianteFixa ? (safeMode ? VARIANTES_INTL[varianteFixa.landing.replace("/", "") as keyof typeof VARIANTES_INTL] : varianteFixa) : undefined
+  // Link único: o texto padrão + o de cada variação; o CSS mostra só a sorteada (html[data-v])
+  const multi = (padrao: ReactNode, campo: "titulo" | "subtitulo" | "botao") =>
+    variantes ? (
+      <>
+        <span data-var="principal">{padrao}</span>
+        {Object.entries(variantes).map(([k, v]) => <span key={k} data-var={k}>{v[campo]}</span>)}
+      </>
+    ) : (
+      padrao
+    )
+
   return (
     <section className="relative" data-hero-visita>
       <div className="bg-[#00D084] text-white text-center py-4 md:py-6">
@@ -269,8 +286,8 @@ export function HeroSection({ safeMode = false, countryLanding = false, variante
           <h1
             className="text-[21px] md:text-4xl lg:text-5xl font-poppins mb-4 md:mb-6 text-white leading-tight text-center max-w-3xl"
           >
-            {variante && !safeMode ? (
-              variante.titulo
+            {multi(<>{copia ? (
+              copia.titulo
             ) : safeMode ? (
               <>
                 {"Aprend\u00e9 c\u00f3mo funcionan los "}
@@ -300,14 +317,14 @@ export function HeroSection({ safeMode = false, countryLanding = false, variante
                 <span className="font-bold text-[#00D084]">{"500 a 2.000 dólares"}</span>
                 {" al mes"}
               </>
-            )}
+            )}</>, "titulo")}
           </h1>
 
           <p
             className="text-[11px] md:text-base font-poppins text-white mb-8 md:mb-10 leading-relaxed text-center max-w-3xl mx-auto px-2"
           >
-            {variante && !safeMode ? (
-              variante.subtitulo
+            {multi(<>{copia ? (
+              copia.subtitulo
             ) : countryLanding ? (
               <>
                 <strong>Sin experiencia previa</strong>{", "}<strong>adaptado a tu rutina</strong>{" y "}<strong>con un capital bajo para empezar</strong>{"."}
@@ -317,7 +334,7 @@ export function HeroSection({ safeMode = false, countryLanding = false, variante
                 {"Un paso a paso real y probado, incluso por personas "}
                 <strong>sin conocimientos previos y con poco tiempo.</strong>
               </>
-            )}
+            )}</>, "subtitulo")}
           </p>
 
           <div className={`mb-6 md:mb-8 flex max-w-md mx-auto justify-center ${isVisible ? "animate-fade-in-up" : "opacity-0"} delay-400`}>
@@ -330,7 +347,7 @@ export function HeroSection({ safeMode = false, countryLanding = false, variante
                 setShowPhoneModal(true)
               }}
             >
-              {variante && !safeMode ? variante.botao : countryLanding ? "QUIERO REGISTRARME GRATIS" : "QUIERO MI CUPO GRATIS"}
+              {multi(<>{copia ? copia.botao : countryLanding ? "QUIERO REGISTRARME GRATIS" : "QUIERO MI CUPO GRATIS"}</>, "botao")}
             </Button>
           </div>
 

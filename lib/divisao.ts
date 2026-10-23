@@ -31,13 +31,14 @@ export type TesteDivisao = {
   variacoes: Record<string, number>
 }
 
-// Jubilados: /v1–/v3 ainda têm os textos da General. Até ajustar, "/" segue sendo a página principal
-// (promessa da jubilación). Quando as variações estiverem prontas, acrescente o teste aqui, ex.:
-// { nome: "Teste 1 · Headline", inicio: "2026-10-24", variacoes: { "/v1": 34, "/v2": 33, "/v3": 33 } },
-export const TESTES_DIVISAO: TesteDivisao[] = []
+export const TESTES_DIVISAO: TesteDivisao[] = [
+  // Jubilados — Teste 1 do Emi, headlines oficiais (A=/v1, B=/v2, C=/v3, D=/v4), a partir de hoje.
+  // Nome novo = sorteio novo para todo mundo (quem já tinha caído nos textos provisórios é sorteado de novo).
+  { nome: "Teste 1 · Headline oficial", inicio: "2026-10-23", variacoes: { "/v1": 25, "/v2": 25, "/v3": 25, "/v4": 25 } },
+]
 
 /** Variações que existem neste projeto (cada uma com a sua versão -intl). Página nova (/v4…) entra aqui. */
-export const VARIACOES_EXISTENTES = ["/", "/v1", "/v2", "/v3"]
+export const VARIACOES_EXISTENTES = ["/", "/v1", "/v2", "/v3", "/v4"]
 
 export const COOKIE_DIVISAO = "tde_div"
 export const DURACAO_COOKIE = 60 * 60 * 24 * 30
