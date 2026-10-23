@@ -246,7 +246,7 @@ export function HeroSection({ safeMode = false, countryLanding = false, variante
   }
 
   return (
-    <section className="relative">
+    <section className="relative" data-hero-visita>
       <div className="bg-[#00D084] text-white text-center py-4 md:py-6">
         <div className="text-base md:text-lg font-bold tracking-wide px-4">ENTRENAMIENTO GRATUITO Y ONLINE</div>
       </div>
@@ -287,6 +287,8 @@ export function HeroSection({ safeMode = false, countryLanding = false, variante
                 <span className="font-bold text-white">{"ingresos extra"}</span>
                 {" de "}
                 <span className="font-bold text-[#00D084]">{"500 a 2.000 dólares al mes"}</span>
+                {" y "}
+                <span className="font-bold text-white">{"complementar tu jubilación"}</span>
               </>
             ) : (
               <>
@@ -308,7 +310,7 @@ export function HeroSection({ safeMode = false, countryLanding = false, variante
               variante.subtitulo
             ) : countryLanding ? (
               <>
-                <strong>Sin experiencia previa</strong>{", "}<strong>sin dejar tu trabajo</strong>{" y "}<strong>adaptado a tu rutina</strong>{"."}
+                <strong>Sin experiencia previa</strong>{", "}<strong>adaptado a tu rutina</strong>{" y "}<strong>con un capital bajo para empezar</strong>{"."}
               </>
             ) : (
               <>
