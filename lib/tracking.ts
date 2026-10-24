@@ -21,7 +21,7 @@ export function tde(comando: "lead" | "qualificar", dados: Record<string, unknow
     w.tde = fila
   }
   return new Promise((resolve) => {
-    w.tde!(comando, { landing: "general", ...dados, onResultado: resolve })
+    w.tde!(comando, { landing: "jubilados", ...dados, onResultado: resolve })
   })
 }
 

@@ -207,7 +207,7 @@ function GraciasVideoContent() {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
-      <Script src={`${TRACKING_URL}/t.js`} data-landing="general" strategy="afterInteractive" />
+      <Script src={`${TRACKING_URL}/t.js`} data-landing="jubilados" strategy="afterInteractive" />
       <div className="bg-[#00D084] py-3 px-4 text-center">
         <p className="text-xs md:text-sm font-bold tracking-wide text-white">PASO 2 DE 3 · CASI LISTO</p>
       </div>
