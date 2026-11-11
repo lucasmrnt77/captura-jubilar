@@ -24,7 +24,7 @@ const SUBPROMESA = (
 )
 const BOTAO = "QUIERO REGISTRARME GRATIS"
 
-export const VARIANTES: Record<"v1" | "v2" | "v3" | "v4", VarianteCaptura> = {
+export const VARIANTES: Record<"v1" | "v2" | "v3" | "v4" | "v5", VarianteCaptura> = {
   // A
   v1: {
     landing: "/v1",
@@ -82,6 +82,22 @@ export const VARIANTES: Record<"v1" | "v2" | "v3" | "v4", VarianteCaptura> = {
         <span className={branco}>con tus propios ingresos</span>
         {", "}
         <span className={verde}>de 500 a 2.000 dólares por mes</span>
+      </>
+    ),
+    subtitulo: SUBPROMESA,
+    botao: BOTAO,
+  },
+  // 11/11/2026 (Martín): mesma promessa da General Jubilados (/v1 de lá), fixa em todos os países
+  v5: {
+    landing: "/v5",
+    titulo: (
+      <>
+        {"Aprendé a invertir en los "}
+        <span className={branco}>mercados financieros</span>
+        {" para generar "}
+        <span className={branco}>ingresos extra</span>
+        {" de "}
+        <span className={verde}>500 a 2.000 dólares al mes</span>
       </>
     ),
     subtitulo: SUBPROMESA,

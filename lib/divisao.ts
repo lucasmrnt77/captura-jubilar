@@ -58,10 +58,12 @@ export const TESTES_DIVISAO: TesteDivisao[] = [
   { nome: "Teste 2 · Argentina", inicio: "2026-10-28", variacoes: { "/v3": 100 }, porPais: { AR: { "/v1": 50, "/v3": 50 } } },
   // 04/11/2026: fim do teste 2 — Argentina: /v1 fixa (vencedora); Uruguai e demais: /v3 fixa (como estava)
   { nome: "Vencedoras fixas · AR v1", inicio: "2026-11-05", variacoes: { "/v3": 100 }, porPais: { AR: { "/v1": 100 } } },
+  // 11/11/2026 (Martín): todos os países com a mesma promessa da General Jubilados (/v5), a partir de hoje.
+  { nome: "Promessa General Jubilados · todos", inicio: "2026-11-11", variacoes: { "/v5": 100 }, porPais: { AR: { "/v5": 100 } } },
 ]
 
 /** Variações que existem neste projeto (cada uma com a sua versão -intl). Página nova (/v4…) entra aqui. */
-export const VARIACOES_EXISTENTES = ["/", "/v1", "/v2", "/v3", "/v4"]
+export const VARIACOES_EXISTENTES = ["/", "/v1", "/v2", "/v3", "/v4", "/v5"]
 
 export const COOKIE_DIVISAO = "tde_div"
 export const DURACAO_COOKIE = 60 * 60 * 24 * 30
