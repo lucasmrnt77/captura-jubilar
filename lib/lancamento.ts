@@ -195,5 +195,5 @@ function acompanharVisita(vid: string) {
   } catch {}
 }
 
-/** Botão "Entrar al grupo alternativo" (20/11/2026): funil próprio no redirecionador com 2 grupos de reserva (#24 e #26), alternando. */
-export const LINK_GRUPO_RESERVA = process.env.NEXT_PUBLIC_LINK_GRUPO_RESERVA || "https://links.traderdelite.net/geral-reserva"
+/** Botão "Entrar al grupo alternativo" (20/11/2026): funil de reserva próprio de Jubilados no redirecionador, 2 grupos alternando (#64 e #61). */
+export const LINK_GRUPO_RESERVA = process.env.NEXT_PUBLIC_LINK_GRUPO_RESERVA_JUBILADOS || "https://links.traderdelite.net/jubilados-reserva"
