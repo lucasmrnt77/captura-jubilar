@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation"
 import Script from "next/script"
 import { leadDaSessao } from "@/lib/lead-sessao"
 import { tde, comLimite, TRACKING_URL } from "@/lib/tracking"
-import { LINK_GRUPO_GERAL, LINK_GRUPO_RESERVA, LANCAMENTO_TESTE } from "@/lib/lancamento"
+import { LINK_GRUPO_JUBILADOS, LINK_GRUPO_RESERVA, LANCAMENTO_TESTE } from "@/lib/lancamento"
 import { linkGrupoComId } from "@/lib/redir-id"
 
 /**
@@ -177,7 +177,7 @@ export function GraciasLancamento({ variante }: { variante: VarianteGracias }) {
       setAvisoTeste(`Modo teste: ${res?.qualificado ? "Lead Qualificado enviado" : res ? "não qualificado (só Lead General)" : "sem resposta do tracking"}. O grupo não é aberto em teste.`)
       return
     }
-    const link = linkGrupoComId(LINK_GRUPO_GERAL)
+    const link = linkGrupoComId(LINK_GRUPO_JUBILADOS)
     const aba = window.open(link, "_blank")
     if (!aba) window.location.href = link
   }

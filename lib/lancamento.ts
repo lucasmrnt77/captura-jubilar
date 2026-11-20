@@ -12,6 +12,8 @@
  */
 export const PAINEL_URL = (process.env.NEXT_PUBLIC_PAINEL_URL || "https://painel.traderdelite.net").replace(/\/+$/, "")
 export const LINK_GRUPO_GERAL = process.env.NEXT_PUBLIC_LINK_GRUPO_GERAL || "https://links.traderdelite.net/geral"
+/** Botão "Unirme al grupo" de Jubilados e General-Jubilados (20/11/2026): funil próprio no redirecionador (campanha Jubilados no Sendflow, 3 grupos ao mesmo tempo). */
+export const LINK_GRUPO_JUBILADOS = process.env.NEXT_PUBLIC_LINK_GRUPO_JUBILADOS || "https://links.traderdelite.net/jubilados"
 export const LANCAMENTO_TESTE = "teste-paginas"
 /** Esta é a página Jubilar (cópia da General com domínio próprio). O painel separa as métricas por site. */
 export const SITE = "jubilar"
